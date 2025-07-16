@@ -1,7 +1,7 @@
 
 import { TonConnectUI } from '@tonconnect/ui-react';
 
-export const TON_PAYMENT_ADDRESS = 'UQCiVNm22dMF9S3YsHPcgrmqXEQHt4MIdk_N7VJu88NrLr4R';
+export const TON_PAYMENT_ADDRESS = 'UQCMWS548CHXs9FXls34OiKAM5IbVSOr0Rwe-tTY7D14DUoq';
 
 export interface UpgradeOption {
   id: string;
