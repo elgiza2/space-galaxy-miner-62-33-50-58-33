@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from "@/hooks/use-toast";
 import { useTaskManagement } from '@/hooks/useTaskManagement';
 import { useCurrency } from '../hooks/useCurrency';
@@ -366,14 +367,9 @@ const TasksPage = ({
         </div>
       </div>;
   }
-  return <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white" onClick={handlePageClick}>
-      <div className="min-h-screen flex flex-col">
-        {/* Tasks Section - No Header */}
-        <div className="pt-4 pb-2 px-4">
-        </div>
-
-        {/* Tasks Section */}
-        <div className="flex-1 px-4 pb-2">
+  return <div className="h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white" onClick={handlePageClick}>
+      <ScrollArea className="h-full">
+        <div className="px-4 py-8 pb-24">
           <div className="max-w-md mx-auto">
             <Tabs defaultValue="main" className="w-full">
               <TabsList className="grid w-full grid-cols-3 mb-6 mt-4 h-12 bg-gradient-to-r from-blue-800/30 to-blue-700/30 backdrop-blur-sm border border-blue-600/30 rounded-xl">
@@ -414,7 +410,7 @@ const TasksPage = ({
             </Tabs>
           </div>
         </div>
-      </div>
+      </ScrollArea>
     </div>;
 };
 export default TasksPage;

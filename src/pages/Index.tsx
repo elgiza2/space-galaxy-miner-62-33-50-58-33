@@ -27,12 +27,18 @@ const Index = () => {
   const [showRewardPopup, setShowRewardPopup] = useState(false);
 
   useEffect(() => {
-    // Show reward popup immediately when page loads
-    setShowRewardPopup(true);
-  }, []);
+    // Show reward popup for all users on every page load
+    // Always show on component mount (new session/refresh)
+    const timer = setTimeout(() => {
+      setShowRewardPopup(true);
+    }, 1500); // Small delay to ensure proper loading
+    
+    return () => clearTimeout(timer);
+  }, []); // Empty dependency array means this runs on every mount
 
   const handleCloseRewardPopup = () => {
     setShowRewardPopup(false);
+    // No persistent storage - popup will show again on next visit/refresh
   };
 
   const handleSpaceNavigation = (page: string) => {
