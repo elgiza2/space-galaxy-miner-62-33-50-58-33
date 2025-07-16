@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { CheckCircle, Clock, ExternalLink, Gift, ArrowDown } from 'lucide-react';
 import { useTaskManagement } from '@/hooks/useTaskManagement';
 import { taskUserService } from '@/services/taskUserService';
@@ -183,7 +184,7 @@ const IntegratedTasksPage = () => {
 
   return (
     <div 
-      className="min-h-screen relative overflow-hidden bg-black"
+      className="h-screen relative bg-black"
       style={{
         backgroundImage: 'url(/lovable-uploads/1c20bfb0-8100-4238-a6e3-a631e16cae93.png)',
         backgroundSize: 'cover',
@@ -193,9 +194,8 @@ const IntegratedTasksPage = () => {
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
       
-      <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Header Section */}
-        <div className="flex-1 flex flex-col items-center justify-start px-4 py-8">
+      <ScrollArea className="h-full">
+        <div className="relative z-10 px-4 py-8">
           {/* Balance Display */}
           <div className="text-center mb-8 mt-16">
             <div className="flex items-center justify-center gap-2 mb-2">
@@ -230,16 +230,8 @@ const IntegratedTasksPage = () => {
             </p>
           </div>
 
-          {/* Scroll Down Indicator */}
-          <div className="flex flex-col items-center mb-8">
-            <p className="text-gray-400 text-sm mb-2">Scroll down to see tasks</p>
-            <ArrowDown className="w-6 h-6 text-white animate-bounce" />
-          </div>
-        </div>
-
-        {/* Tasks Section */}
-        <div className="px-4 pb-8">
-          <div className="max-w-md mx-auto space-y-3">
+          {/* Tasks Section */}
+          <div className="max-w-md mx-auto space-y-3 pb-8">
             {activeTasks.map((task) => (
               <div key={task.id}>
                 {isReferralTask(task.title) ? (
@@ -321,7 +313,7 @@ const IntegratedTasksPage = () => {
             )}
           </div>
         </div>
-      </div>
+      </ScrollArea>
 
       {/* Task Verification Modal */}
       <TaskVerificationModal
