@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TopBar from '@/components/TopBar';
 import BottomNavigation from '@/components/Navigation/BottomNavigation';
 import MiningPage from '@/components/MiningPage';
@@ -11,6 +11,7 @@ import GamesPage from '@/components/GamesPage';
 import SlotMachine from '@/components/SlotMachine';
 import CandyFortuneReels from '@/components/CandyFortuneReels';
 import ImprovedMinesPage from '@/components/ImprovedMinesPage';
+import RewardPopup from '@/components/RewardPopup';
 
 import MorePage from '@/components/MorePage';
 import { useNavigation, Page } from '@/hooks/useNavigation';
@@ -23,6 +24,16 @@ const Index = () => {
     handleTaskButtonClick
   } = useNavigation();
 
+  const [showRewardPopup, setShowRewardPopup] = useState(false);
+
+  useEffect(() => {
+    // Show reward popup immediately when page loads
+    setShowRewardPopup(true);
+  }, []);
+
+  const handleCloseRewardPopup = () => {
+    setShowRewardPopup(false);
+  };
 
   const handleSpaceNavigation = (page: string) => {
     setCurrentPage(page as Page);
@@ -69,6 +80,15 @@ const Index = () => {
         showAdminAccess={showAdminAccess}
         onPageChange={setCurrentPage}
         onTaskButtonClick={handleTaskButtonClick}
+      />
+      
+      <RewardPopup
+        isOpen={showRewardPopup}
+        onClose={handleCloseRewardPopup}
+        onNavigateToReferral={() => {
+          setCurrentPage('referral');
+          setShowRewardPopup(false);
+        }}
       />
     </div>
   );
